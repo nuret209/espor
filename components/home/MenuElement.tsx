@@ -5,7 +5,7 @@ import Accordion from './Accordion';
 interface MenuElementProps {
     name: string
     icon?: string
-    submenus?: Array<{ name: string, icon?: string, submenus: Array<{ name: string }> }>
+    submenus?: Array<{ name: string, icon?: string, submenus?: Array<{ name: string }> }>
 }
 
 const MenuElement = (props: MenuElementProps) => {
