@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Menu 1",
+        "submenus": [
+            {
+                "name": "Submenu 1",
+                "icon": "menuIcon.svg"
+            },
+            {
+                "name": "Submenu  Menu 1",
+                "icon": "menuIcon.svg"
+            }
+        ]
+    },
+    {
+        "name": "Menu 2",
+        "submenus": [
+            {
+                "name": "VMenu 2",
+                "submenus": [
+                    {
+                        "name": "Submenu 1"
+                    },
+                    {
+                        "name": "Submenu Menu 2"
+                    },
+                    {
+                        "name": "Submenu Menu 3"
+                    }
+                ]
+            },
+            {
+                "name": "VMenu 3",
+                "submenus": [
+                    {
+                        "name": "Submenu 1"
+                    },
+                    {
+                        "name": "Submenu Menu 2"
+                    },
+                    {
+                        "name": "Submenu Menu 3"
+                    }
+                ]
+            }        ]
+    }
+]
