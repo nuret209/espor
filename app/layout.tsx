@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import "./markdown.css"
 const inter = Inter({ weight: ["400", "500"], subsets: ["latin", "latin-ext"] })
 
 export const metadata: Metadata = {

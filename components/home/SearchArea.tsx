@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchArea = () => {
   return (
-    <div>SearchArea</div>
+    <div></div>
   )
 }
 

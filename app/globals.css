@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.markdown > *:not(.md) {
+  all: revert;
+ 
+}
 html,body{
   height: 100%;
 }
