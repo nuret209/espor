@@ -2,16 +2,15 @@ import React from 'react'
 import { RiCloseLine, RiSearchLine } from 'react-icons/ri'
 import { HiArrowNarrowUp, HiArrowNarrowDown } from "react-icons/hi";
 
-const SearchArea = () => {
+const SearchArea = ({ setActive }: { setActive: React.Dispatch<React.SetStateAction<boolean>> }) => {
   return (
     <div className='fixed inset-0 z-50 md:py-36 flex flex-col overflow-y-auto md:items-center md:justify-center md:bg-overlay md:p-4 md:backdrop-blur-[10px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'>
       <div className='bg-white rounded-lg flex flex-col justify-center lg:min-w-[540px]'>
         <div className='flex items-center h-16'>
           <RiSearchLine size={24} className='m-4' />
           <input type="text" className='outline-none caret-[#f05023] w-full' placeholder="Type a command or search..." />
-          <RiCloseLine size={24} className='m-4 cursor-pointer' />
+          <RiCloseLine size={24} className='m-4 cursor-pointer' onClick={() => setActive(false)} />
         </div>
-        <SearchArea />
         <div className='flex justify-between h-16 items-center px-5 border-t border-gray-100 bg-[#f7f7f7] rounded-b-lg'>
           <div className='flex gap-2  text-gray-500'>
             <div className='flex h-6 w-7 shrink-0 items-center justify-center rounded-[5px] bg-gray-200'><HiArrowNarrowUp size={18} /></div>
