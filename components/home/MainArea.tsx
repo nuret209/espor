@@ -1,7 +1,8 @@
 "use client"
 import TitleMenu from './TitleMenu';
 import TopComponent from './TopComponent';
-import DS from "@/docs/introduction.mdx"
+import DS from "@/docs/introduction.mdx";
+import Copyright from "./Copyright"
 
 const MainArea = () => {
 
@@ -11,7 +12,8 @@ const MainArea = () => {
             <hr />
             <div className='relative flex-1 xl:grid xl:grid-cols-[minmax(0,1fr)_288px]'>
                 <div className='markdown flex w-full flex-1 flex-col pt-2 lg:max-w-3xl overflow-auto lg:pr-6'>
-                    <DS />
+                    <DS />    
+                    <Copyright />
                 </div>
                 <TitleMenu />
             </div>
