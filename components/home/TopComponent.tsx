@@ -1,6 +1,7 @@
 import React from 'react'
 import { RiSearchLine } from "react-icons/ri";
 import { BsTwitterX, BsGithub, BsDiscord } from "react-icons/bs";
+import SearchArea from './SearchArea';
 const TopComponent = () => {
     return (
         <div className='flex justify-between items-center py-6 text-gray-400'>
@@ -14,6 +15,7 @@ const TopComponent = () => {
                 <div className='p-2 cursor-pointer hover:bg-[rgb(242,242,242)] rounded-md'> <BsDiscord /></div>
                 <div className='p-2 cursor-pointer hover:bg-[rgb(242,242,242)] rounded-md'>   <BsGithub /></div>
             </div>
+            <SearchArea/>
         </div>
     )
 }
