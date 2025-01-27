@@ -5,7 +5,7 @@ import MenuElement from './MenuElement'
 import { IoMdClose } from "react-icons/io";
 const Menu = ({active, setMenuActive} : {active : boolean , setMenuActive : React.Dispatch<React.SetStateAction<boolean>>}) => {
     return (
-        <div className={`fixed lg:!sticky z-[2] top-0 ${active ? "max-w-full  " : "max-w-0"} transition-[max-width] py-3 lg:max-w-full duration-700 h-screen w-full shrink-0 overflow-hidden border-r box-border  max-h-screen  bg-white lg:block `}>
+        <div className={`fixed lg:!sticky z-[2] top-0 ${active ? "max-w-full  " : "max-w-0"} transition-[max-width] py-3 lg:max-w-full duration-700 h-screen w-full shrink-0 overflow-auto border-r box-border  max-h-screen  bg-white lg:block `}>
           <div className='flex justify-between items-center px-4 lg:px-6'>
             <Logo/>
             <IoMdClose size={20} onClick={()=>setMenuActive(false)} className="lg:hidden"/>
