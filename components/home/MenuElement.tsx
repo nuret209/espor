@@ -14,11 +14,11 @@ const MenuElement = (props: MenuElementProps) => {
     return (
         <>
             <DashedLine />
-            <Accordion title={props.name} classname='flex flex-col'>
-                {props.submenus?.map(menu => <div key={menu.name} className={`text-label-sm cursor-pointer  transition-all ${typeof menu.submenus == 'object' ? "text-gray-900 pt-3" : "text-[#707070] hover:text-gray-900 pt-4"}`}>
-                    <div className='flex items-center'>{menu.icon && <img  src={`/images/${menu.icon}`} alt={menu.name} className='w-4 h-4 mr-2' />}{menu.name}</div>
+            <Accordion title={props.name} classname='flex flex-col min-w-full'>
+                {props.submenus?.map(menu => <div key={menu.name} className={`text-label-sm cursor-pointer min-w-full  transition-all ${typeof menu.submenus == 'object' ? "text-gray-900 pt-3" : "text-[#707070] hover:text-gray-900 pt-4"}`}>
+                    <div className='flex whitespace-nowrap items-center'>{menu.icon && <img  src={`/images/${menu.icon}`} alt={menu.name} className='w-4 h-4 mr-2' />}{menu.name}</div>
                     {typeof menu.submenus == 'object' && <div className='pl-5 relative border-l border-gray-200 flex flex-col gap-4 mt-5'>
-                      {menu.submenus.map(m => <div key={m.name} className='text-[#707070] hover:text-gray-900'>  {m.name}</div>)}
+                      {menu.submenus.map(m => <div key={m.name} className='text-[#707070] hover:text-gray-900 whitespace-nowrap'>  {m.name}</div>)}
                     </div>}
                 </div>)}
             </Accordion>
