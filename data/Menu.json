@@ -4,13 +4,11 @@
         "submenus": [
             {
                 "name": "Antalya 1",
-                "icon": "menuIcon.svg",
-                "link": "antalya"
+                "icon": "menuIcon.svg"
             },
             {
-                "name": "İzmir  Menu 1",
-                "icon": "menuIcon.svg",
-                "link": "izmir"
+                "name": "Izmir  Menu 1",
+                "icon": "menuIcon.svg"
             }
         ]
     },
@@ -53,13 +51,11 @@
         "submenus": [
             {
                 "name": "Antalya 1",
-                "icon": "menuIcon.svg",
-                "link": "antalya"
+                "icon": "menuIcon.svg"
             },
             {
-                "name": "İzmir  Menu 1",
-                "icon": "menuIcon.svg",
-                "link": "izmir"
+                "name": "Izmir  Menu 1",
+                "icon": "menuIcon.svg"
             }
         ]
     },
@@ -102,13 +98,11 @@
         "submenus": [
             {
                 "name": "Antalya 1",
-                "icon": "menuIcon.svg",
-                "link": "antalya"
+                "icon": "menuIcon.svg"
             },
             {
-                "name": "İzmir  Menu 1",
-                "icon": "menuIcon.svg",
-                "link": "izmir"
+                "name": "Izmir  Menu 1",
+                "icon": "menuIcon.svg"
             }
         ]
     },

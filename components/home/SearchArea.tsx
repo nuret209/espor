@@ -17,7 +17,7 @@ const SearchArea = ({ setActive }: { setActive: React.Dispatch<React.SetStateAct
       <div tabIndex={-1} className='menu relative bg-[#262626] flex h-full min-h-full max-h-full w-full origin-bottom flex-col justify-between overflow-hidden bg-ln-gray-925 lg:h-auto lg:max-w-[540px] lg:rounded-20 lg:bg-gray-0'>
         <div className='flex items-center h-16 lg:border-b'>
           <RiSearchLine size={24} className='m-4 text-[#e74e22] lg:text-gray-500' />
-          <input type="text" value={search} onChange={e => setSearch(e.target.value)} className='text-gray-900 outline-none bg-transparent caret-[#f05023] w-full' placeholder="Type a command or search..." />
+          <input type="text" value={search} onChange={e => setSearch(e.target.value)} className='text-white lg:text-gray-900 outline-none bg-transparent  caret-[#f05023] w-full' placeholder="Type a command or search..." />
           <RiCloseLine size={24} className='m-4 cursor-pointer hidden lg:block' onClick={() => setActive(false)} />
             <span className='lg:hidden text-paragraph-xs px-6 py-1 cursor-pointer border-l border-[#3d3d3d]' onClick={() => setActive(false)}>CLOSE</span>
         </div>
