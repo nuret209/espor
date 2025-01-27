@@ -36,7 +36,7 @@ const TitleMenu = () => {
         <div className='mt-8 hidden border-l border-gray-100 xl:block '>
             <div className='sticky top-6'>
                 <div className='flex items-center gap-1.5 text-[11px]/[12px] font-550 px-6 text-[#a3a3a3] uppercase'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 12" className="size-3"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.375 6h9.25m-9.25-3.125h9.25m-9.25 6.25H5.75"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 12" className="size-3"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M1.375 6h9.25m-9.25-3.125h9.25m-9.25 6.25H5.75"></path></svg>
                     On this Page
                 </div>
                 <div className='flex flex-col text-label-xs mt-4 gap-4 text-[#525252]'>
