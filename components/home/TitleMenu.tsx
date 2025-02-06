@@ -7,9 +7,9 @@ const TitleMenu = () => {
         document.querySelectorAll("h2").forEach(title => {
             const rect = title.getBoundingClientRect();
             if (
-                rect.top >=  0&&
+                rect.top >= 0 &&
                 rect.left >= 0 &&
-                rect.bottom <=  -500 + (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom <= -500 + (window.innerHeight || document.documentElement.clientHeight) &&
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             ) {
                 setActiveTitle(title.innerText)
@@ -21,16 +21,15 @@ const TitleMenu = () => {
         window.addEventListener("scroll", checkTitles)
     })
     useEffect(() => {
-        document.querySelectorAll("h2").forEach(title => {
+        document.querySelectorAll("h1").forEach(title => {
             setTitles(prevTitles => [...prevTitles, title.innerText])
             title.id = (title.innerText.toLowerCase()
                 .trim()
                 .replace(/[^a-z0-9\s-]/g, '')
                 .replace(/\s+/g, '-')
                 .replace(/-+/g, '-'))
-        })
-
-    }, [])
+        });
+    },[])
     return (
 
         <div className='mt-8 hidden border-l border-gray-100 xl:block '>

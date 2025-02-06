@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Menu {
+  id    String @id @default(uuid())
+  title String @unique
+  pages Page[]
+}
+
+model Page {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Content   Content[] 
+  menuId    String
+  slug String @unique
+  menu      Menu    @relation(fields: [menuId], references: [id]) // Optional relation to Menu
+}
+
+model Content {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  pageId    String  
+  page      Page     @relation(fields: [pageId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
