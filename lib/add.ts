@@ -35,11 +35,11 @@ export async function addContent(content: string, contentTitle: string, pageTitl
                     }
                 }
             })
+            return true;
     }
     catch (err) {
         console.error(err);
         return false;
-
     }
 }
 
