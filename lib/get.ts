@@ -49,8 +49,6 @@ export async function getPagesWithMenu(menu: string) {
             pages: true// Her bir Page'e bağlı Content'leri de getirir
         }
     });
-    console.log(menus?.pages);
-
     return menus?.pages;
 }
 export async function getContentsWithMenu(menu: string, page: string) {

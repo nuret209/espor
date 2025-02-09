@@ -4,7 +4,7 @@ import { getMenus, getPages } from '@/lib/get';
 import React, { useEffect, useState } from 'react'
 
 
-const Page = () => {
+const AddPage = () => {
     const [mode, setMode] = useState("");
     const [selectedMenu, setSelectedMenu] = useState("");
     const [selectedPage, setSelectedPage] = useState("");
@@ -54,7 +54,8 @@ const Page = () => {
     }, [mode])
 
     return (
-        <div className='p-16'>
+        <div className=''>
+            <h2 className='text-[32px]'>Add Page</h2>
             <select name="" id="" className="border-2" onChange={(e) => setMode(e.target.value)}>
                 <option value="">Select Mode</option>
                 <option >Add Menu</option>
@@ -91,4 +92,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default AddPage

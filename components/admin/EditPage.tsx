@@ -3,7 +3,7 @@ import { editContent, editContentText, editMenu, editPage } from '@/lib/edit';
 import { getContents, getContentsWithMenu, getMenus, getPagesWithMenu } from '@/lib/get';
 import React, { useEffect, useState } from 'react'
 
-const Page = () => {
+const EditPage = () => {
     const [selectedMenu, setSelectedMenu] = useState("");
     const [selectedPage, setSelectedPage] = useState("");
     const [selectedContent, setSelectedContent] = useState("");
@@ -67,7 +67,4 @@ const Page = () => {
         </div>
     )
 }
-
-
-
-export default Page
+export default EditPage
