@@ -17,8 +17,8 @@ const PAGE = () => {
         {
             title: string;
             pages: {
-                title: string
-                , slug: string,
+                title: string,
+                slug: string,
                 Content: {
                     title: string,
                     content: string
@@ -56,9 +56,9 @@ const PAGE = () => {
             </select>
             <div className='flex flex-col w-52'>
                 {selectedMenu && <> <input type="text" value={editedMenu} onChange={e => setEditedMenu(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => (editMenu(selectedMenu, editedMenu || "").then(c => c == true && alert("ok refresh page")))}>Menü Kaydet</button></>}
-                {selectedPage && <> <input type="text" value={editedPage} onChange={e => setEditedPage(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editPage(selectedMenu,selectedPage, editedPage || "").then(c => c == true && alert("ok refresh page"))}> Sayfa Kaydet</button></>}
-                {selectedContent && <> <input type="text" value={editedContent} onChange={e => setEditedContent(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContent(selectedMenu,selectedPage,selectedContent, editedContent || "").then(c => c == true && alert("ok refresh page"))}>Content Kaydet</button></>}
-                {selectedContent && <> <textarea value={editedContentText} onChange={e => setEditedContentText(e.target.value)} id=""></textarea> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContentText(selectedMenu,selectedPage,selectedContent, editedContentText || "").then(c => c == true && alert("ok refresh page"))}>Content Text Kaydet</button></>}
+                {selectedPage && <> <input type="text" value={editedPage} onChange={e => setEditedPage(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editPage(selectedMenu, selectedPage, editedPage || "").then(c => c == true && alert("ok refresh page"))}> Sayfa Kaydet</button></>}
+                {selectedContent && <> <input type="text" value={editedContent} onChange={e => setEditedContent(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContent(selectedMenu, selectedPage, selectedContent, editedContent || "").then(c => c == true && alert("ok refresh page"))}>Content Kaydet</button></>}
+                {selectedContent && <> <textarea value={editedContentText} onChange={e => setEditedContentText(e.target.value)} id=""></textarea> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContentText(selectedMenu, selectedPage, selectedContent, editedContentText || "").then(c => c == true && alert("ok refresh page"))}>Content Text Kaydet</button></>}
             </div>
         </div>
     )
