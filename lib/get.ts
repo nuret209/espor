@@ -2,20 +2,23 @@
 import { prisma } from "./prisma";
 
 export async function getMenus() {
-    const menus = await prisma.menu.findMany({
-        orderBy: {
-            createdAt: 'desc',
-        },
-        include: {
-            pages: {
-                include: {
-                    Content: true, // Her bir Page'e bağlı Content'leri de getirir
-                },
-            },
-        },
-    });
-    return menus;
+  const menus = await prisma.menu.findMany({
+    include: {
+      pages: true,
+    },
+  });
+
+  return menus.map(menu => ({
+    id: menu.id,
+    title: menu.title,
+    pages: menu.pages.map(page => ({
+      title: page.title,
+      slug: page.slug,
+    })),
+  }));
 }
+
+
 export async function getContentsWithSlug(slug: string) {
     const contents = await prisma.page.findUnique({
         where: {

@@ -2,7 +2,6 @@
 import { getMenus, getPages } from "./get";
 import { prisma } from "./prisma";
 
-
 export async function addMenu(menuTitle: string) {
     try {
         await prisma.menu.create({
