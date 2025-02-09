@@ -27,7 +27,18 @@ const PAGE = () => {
         }[]>();
 
     useEffect(() => {
-        getMenus().then(res => setData(res))
+        getMenus().then(res => setData(res.map(f=>
+            ({
+                title: f.title,
+                pages: f.pages.map(p => ({
+                    title: p.title,
+                    slug: p.slug,
+                    Content: p.Content.map(c => ({
+                        title: c.title,
+                        content: c.content
+                    }))
+                }))
+            }))))
     }, [])
     useEffect(() => {
         setEditedMenu(selectedMenu)
