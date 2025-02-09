@@ -1,9 +1,9 @@
 "use client"
 import { editContent, editContentText, editMenu, editPage } from '@/lib/edit';
-import { getContents, getMenus } from '@/lib/get';
+import { getContents, getContentsWithMenu, getMenus, getPagesWithMenu } from '@/lib/get';
 import React, { useEffect, useState } from 'react'
 
-const PAGE = () => {
+const Page = () => {
     const [selectedMenu, setSelectedMenu] = useState("");
     const [selectedPage, setSelectedPage] = useState("");
     const [selectedContent, setSelectedContent] = useState("");
@@ -11,35 +11,28 @@ const PAGE = () => {
     const [editedPage, setEditedPage] = useState("");
     const [editedContent, setEditedContent] = useState("");
     const [editedContentText, setEditedContentText] = useState("");
-
-
-    const [data, setData] = useState<
-        {
-            title: string;
-            pages: {
-                title: string,
-                slug: string,
-                Content: {
-                    title: string,
-                    content: string
-                }[]
-            }[]
-        }[]>();
+    const [menus, setMenus] = useState<{ title: string }[]>();
+    const [pages, setPages] = useState<{ title: string, slug: string }[]>();
+    const [contents, setContent] = useState<{ title: string, content: string }[]>();
 
     useEffect(() => {
-        getMenus().then(res => setData(res.map(f=>
-            ({
-                title: f.title,
-                pages: f.pages.map(p => ({
-                    title: p.title,
-                    slug: p.slug,
-                    Content: p.Content.map(c => ({
-                        title: c.title,
-                        content: c.content
-                    }))
-                }))
-            }))))
-    }, [])
+        getMenus().then(res => {
+            if (res) {
+                setMenus(res.map(menu => ({ ...menu })));
+            }
+        });
+        getPagesWithMenu(selectedMenu).then(res => {
+            if (res) {
+                setPages(res.map(page => ({ ...page })));
+            }
+        }
+        )
+        getContentsWithMenu(selectedMenu, selectedPage).then(res => {
+            if (res) {
+                setContent(res.map(content => ({ ...content })));
+            }
+        });
+    }, [selectedMenu, selectedPage, selectedContent]);
     useEffect(() => {
         setEditedMenu(selectedMenu)
         setEditedPage(selectedPage)
@@ -53,17 +46,17 @@ const PAGE = () => {
             <h2 className='text-[32px]'>Edit Page</h2>
             <select name="" onChange={e => setSelectedMenu(e.target.value.trim())} id="" className='border-2'>
                 <option value="">Menu</option>
-                {data?.map((c, index) =>
+                {menus?.map((c, index) =>
                     <option key={index}>{c.title}</option>
                 )}
             </select>
             <select name="" id="" className='border-2' onChange={e => setSelectedPage(e.target.value.trim())}>
                 <option value="">Page</option>
-                {data?.map(e => (e.title.trim() == selectedMenu) && e.pages.map((p, index) => <option key={index}>{p.title}</option>))};
+                {pages?.map((e, index) => <option key={index}>{e.title}</option>)};
             </select>
             <select name="" id="" className='border-2' onChange={e => setSelectedContent(e.target.value.trim())}>
                 <option value="">Content</option>
-                {data?.map(e => (e.title.trim() == selectedMenu) && e.pages.map(p => (p.title.trim() == selectedPage) && p.Content.map((c, index) => <option key={index}>{c.title}</option>)))};
+                {contents?.map((c, index) => <option key={index}>{c.title}</option>)};
             </select>
             <div className='flex flex-col w-52'>
                 {selectedMenu && <> <input type="text" value={editedMenu} onChange={e => setEditedMenu(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => (editMenu(selectedMenu, editedMenu || "").then(c => c == true && alert("ok refresh page")))}>Menü Kaydet</button></>}
@@ -77,4 +70,4 @@ const PAGE = () => {
 
 
 
-export default PAGE
+export default Page
