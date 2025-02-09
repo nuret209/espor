@@ -1,5 +1,4 @@
 "use server"
-import { log } from "console";
 import { prisma } from "./prisma";
 
 export async function getMenus() {
