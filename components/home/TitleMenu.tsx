@@ -39,8 +39,8 @@ const TitleMenu = () => {
                     On this Page
                 </div>
                 <div className='flex flex-col text-label-xs mt-4 gap-4 text-[#525252]'>
-                    {titles.map(title =>
-                        <a key={title} className={`${title == activeTitle ? "text-[#f05023]  border-l border-[#f05023] " : " "}px-6`} href={`#${title.toLowerCase()
+                    {titles.map((title, index) =>
+                        <a key={index} className={`${title == activeTitle ? "text-[#f05023]  border-l border-[#f05023] " : " "}px-6`} href={`#${title.toLowerCase()
                             .trim()
                             .replace(/[^a-z0-9\s-]/g, '')
                             .replace(/\s+/g, '-')

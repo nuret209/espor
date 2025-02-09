@@ -5,7 +5,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 import SearchArea from './SearchArea';
 import Logo from './Logo';
-const TopComponent = ({setMenuActive} : {setMenuActive: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const TopComponent = ({ setMenuActive }: { setMenuActive: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const [searchActive, setSearchActive] = React.useState(false)
 
     useEffect(() => {
@@ -18,8 +18,8 @@ const TopComponent = ({setMenuActive} : {setMenuActive: React.Dispatch<React.Set
             <div className='lg:hidden w-full flex justify-between'>
                 <Logo />
                 <div className='flex items-center text-label-xl gap-4 text-gray-500 cursor-pointer'>
-                    <RiSearchLine onClick={() => setSearchActive(true)}  />
-                    <HiOutlineMenuAlt3 onClick={() => setMenuActive(true)}  />
+                    <RiSearchLine onClick={() => setSearchActive(true)} />
+                    <HiOutlineMenuAlt3 onClick={() => setMenuActive(true)} />
                 </div>
             </div>
             <button onClick={() => setSearchActive(true)} className='hidden lg:flex relative text-label-sm size-6 items-center gap-2 transition md:h-9 md:w-[456px] md:rounded-[9px] md:bg-gray-0 md:pl-2.5 md:pr-2 md:text-left md:ring-1 md:ring-[#333]/10 hover:md:bg-gray-25/50'>
@@ -32,7 +32,7 @@ const TopComponent = ({setMenuActive} : {setMenuActive: React.Dispatch<React.Set
                 <div className='p-2 cursor-pointer hover:bg-[rgb(242,242,242)] rounded-md'> <BsDiscord /></div>
                 <div className='p-2 cursor-pointer hover:bg-[rgb(242,242,242)] rounded-md'>   <BsGithub /></div>
             </div>
- <div className={`${!searchActive ? "opacity-0 pointer-events-none" : "opacity-100"}  transition-all maindiv z-[9999]`}><SearchArea setActive={setSearchActive}/></div> 
+            <div className={`${!searchActive ? "opacity-0 pointer-events-none" : "opacity-100"}  transition-all maindiv z-[9999]`}><SearchArea setActive={setSearchActive} /></div>
         </div>
     )
 }

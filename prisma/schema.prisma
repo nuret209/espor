@@ -9,12 +9,14 @@ datasource db {
 model Menu {
   id    String @id @default(uuid())
   title String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   pages Page[]
 }
 
 model Page {
   id        String   @id @default(uuid())
-  title     String
+  title     String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Content   Content[] 
