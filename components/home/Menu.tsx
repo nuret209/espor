@@ -6,7 +6,7 @@ import MenuItem from './MenuItem';
 import { HiOutlineLightningBolt, HiOutlineDocumentText } from "react-icons/hi";
 import { MdOutlinePrivacyTip, MdOutlineSettings } from "react-icons/md";
 
-const iconByName = [
+export const iconByName = [
     { name: "Introduction", icon: <HiOutlineLightningBolt size={24} /> },
     { name: "Privacy Policy", icon: <MdOutlinePrivacyTip size={24} /> },
     { name: "About", icon: <HiOutlineDocumentText size={24} /> }

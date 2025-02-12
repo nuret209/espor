@@ -18,7 +18,7 @@ const SearchAreaMenu = ({ search }: { search: string }) => {
     <div className='overflow-auto h-full mt-2'>
       {data?.map((menu, i) =>
         <div key={i} >
-          <div className='px-3 py-2 text-label-xs mx-2 text-[#8f8f8f]'>{menu.title}</div>
+        {menu.title != "main-items" &&  <div className='px-3 py-2 text-label-xs mx-2 text-[#8f8f8f]'>{menu.title}</div>}
           {menu.pages.map(
             (submenu, index) =>
               <a href={`/${menu.title.toLowerCase()
