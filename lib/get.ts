@@ -2,20 +2,21 @@
 import { prisma } from "./prisma";
 
 export async function getMenus() {
-  const menus = await prisma.menu.findMany({
-    include: {
-      pages: true,
-    },
-  });
-
-  return menus.map(menu => ({
-    id: menu.id,
-    title: menu.title,
-    pages: menu.pages.map(page => ({
-      title: page.title,
-      slug: page.slug,
-    })),
-  }));
+    const menus = (await prisma.menu.findMany({
+        include: {
+            pages: true,
+        },
+    })).map(menu => ({
+        id: menu.id,
+        title: menu.title,
+        pages: menu.pages.map(page => ({
+            title: page.title,
+            slug: page.slug,
+        })),
+    }));
+    const [menu] = menus.splice(menus.findIndex(menu => menu.title == "main-items"), 1)
+    menus.unshift(menu)
+    return menus;
 }
 
 

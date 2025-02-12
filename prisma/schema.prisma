@@ -22,7 +22,7 @@ model Page {
   Content   Content[] 
   menuId    String
   slug String @unique
-  menu      Menu    @relation(fields: [menuId], references: [id]) // Optional relation to Menu
+  menu      Menu    @relation(fields: [menuId], references: [id]) 
 }
 
 model Content {
