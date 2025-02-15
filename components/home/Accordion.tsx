@@ -10,7 +10,7 @@ interface AccordionProps {
 
 
 const Accordion = (props: AccordionProps) => {
-    const [active, setActive] = React.useState(true)
+    const [active, setActive] = React.useState(false)
     const divRef = React.useRef<HTMLDivElement>(null)
     return (
         <div>

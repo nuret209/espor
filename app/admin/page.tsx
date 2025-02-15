@@ -1,13 +1,11 @@
 "use client"
-import AddPage from '@/components/admin/AddPage';
-import EditPage from '@/components/admin/EditPage';
+import AdminPage from '@/components/admin/AdminPage';
 import { handleSubmit } from '@/lib/login';
 import React, { FormEvent, useState } from 'react'
 const Page = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLogginIn] = useState(false);
-    const [mode, setMode] = useState(0);
     const handleLogin = (e: FormEvent) => {
         e.preventDefault();
         if (!userName || !password) {
@@ -29,23 +27,7 @@ const Page = () => {
             </form>
         </div>
         :
-        <div className=''>
-            <div className='mb-5'>
-                <h1 className='text-[24px]'>Hoşgeldiniz!</h1>
-                <button onClick={() => setLogginIn(false)}>Çıkış Yap</button>
-            </div>
-
-            <div className='text-blue-500 flex gap-5'>
-                <a href="#editpage" className={`${mode == 0 && "text-blue-800"}`} onClick={() => setMode(0)}>Edit Page</a>
-                <a href="#addpage" className={`${mode == 1 && "text-blue-800"}`} onClick={() => setMode(1)}>Add Href</a>
-            </div>
-            {mode == 0 &&
-                <EditPage />
-            }
-            {mode == 1 &&
-                <AddPage />
-            }
-        </div>
+        <AdminPage setLoggedIn={setLogginIn}/>
     )
 
 }

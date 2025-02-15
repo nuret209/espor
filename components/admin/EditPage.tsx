@@ -43,7 +43,7 @@ const EditPage = () => {
     }, [selectedMenu, selectedContent, selectedPage])
     return (
         <div>
-            <h2 className='text-[32px]'>Edit Page</h2>
+            <h2 className='text-[32px]'>Delete Page</h2>
             <select name="" onChange={e => setSelectedMenu(e.target.value.trim())} id="" className='border-2'>
                 <option value="">Menu</option>
                 {menus?.map((c, index) =>
