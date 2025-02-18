@@ -4,12 +4,13 @@ import { getMenus } from "./get";
 import { prisma } from "./prisma"
 
 export const deleteMenu = async (menu: string) => {
+    const _menu = (await getMenus()).find(m => m.title.trim() === menu.trim());
+    if (!_menu) {
+        console.error("Menu not found");
+        return false;
+    }
     try {
-        await prisma.menu.delete({
-            where: {
-                title: menu
-            }
-        })
+        _menu.pages.forEach(page => deletePage(menu, page.slug))
         return true;
     }
     catch (Err) {
@@ -23,10 +24,16 @@ export const deletePage = async (menu: string, page: string) => {
         console.error("Page not found");
         return false;
     }
+    _page.Content.forEach(content =>
+        deleteContent(menu, page, content.title)
+    )
     try {
         await prisma.page.delete({
             where: {
                 slug: _page.slug
+            },
+            include: {
+                Content: true
             }
         })
         return true;

@@ -1,7 +1,14 @@
 "use client"
 import { addContent, addMenu, addPage } from '@/lib/add';
 import { getMenus, getPages } from '@/lib/get';
+
+
 import React, { useEffect, useState } from 'react'
+import * as Select from '@/components/ui/select';
+import * as Textarea from '@/components/ui/textarea';
+import * as Button from '@/components/ui/button';
+import { Input } from "antd"
+
 
 
 const AddPage = () => {
@@ -44,7 +51,7 @@ const AddPage = () => {
     useEffect(() => {
         if (mode == "Add Page")
             getMenus().then(menus => menus.map(menuName => setMenusData(prevState => [...prevState, menuName.title])))
-
+        
         if (mode == "Add Content")
             getPages().then(pages =>
                 pages.map(pageName =>
@@ -52,40 +59,63 @@ const AddPage = () => {
                         [...prevState, pageName.title])))
 
     }, [mode])
-
+    const modes = ["Add Menu", "Add Page", "Add Content"]
     return (
         <div className=''>
             <h2 className='text-[32px]'>Add Page</h2>
-            <select name="" id="" className="border-2" onChange={(e) => setMode(e.target.value)}>
-                <option value="">Select Mode</option>
-                <option >Add Menu</option>
-                <option >Add Page</option>
-                <option >Add Content</option>
-            </select>
-            {mode == "Add Menu" && <div>
-                <input type="text" placeholder='Menu Title' onChange={e => setMenuName(e.target.value)} value={menuName} className='p-2 rounded-lg border-2' />
-                <button onClick={HandleMenu}>Add</button>
+            <Select.Root onValueChange={(value) => setMode(value)} >
+                <Select.Trigger className='w-52 mb-5'>
+                    <Select.Value placeholder='Select Mode' />
+                </Select.Trigger>
+                <Select.Content>
+                    {modes?.map((item, i) => (
+                        <Select.Item key={i} value={item}>
+                            {item}
+                        </Select.Item>
+                    ))}
+                </Select.Content>
+            </Select.Root>
+
+            {mode == "Add Menu" && <div className='flex flex-col md:flex-row gap-4'>
+                <Input type="text" placeholder='Menu Title' onChange={e => setMenuName(e.target.value)} value={menuName} className='p-2 rounded-lg border-2 w-52' />
+                <Button.Root onClick={HandleMenu}>Add</Button.Root>
             </div>}
-            {mode == "Add Page" && <div>
-                <select value={selectedMenu} onChange={e => setSelectedMenu(e.target.value)}>
-                    <option value="">Select Menu</option>
-                    {menusData.map((menu, index) => <option key={index} value={menu.toString()}>{menu}</option>)}
-                </select>
-                <input type="text" placeholder='Page Title' className='p-2 rounded-lg border-2' onChange={e => setPageName(e.target.value)} value={pageName} />
-                <input type="text" placeholder='slug' className='p-2 rounded-lg border-2' onChange={e => setSlug(e.target.value)} value={slug} />
-                <button onClick={handePage}>Add</button>
+            {mode == "Add Page" && <div className='flex flex-col md:flex-row gap-4'>
+                <Select.Root onValueChange={(value) => setSelectedMenu(value)} >
+                    <Select.Trigger className='w-52'>
+                        <Select.Value placeholder='Select Menu' />
+                    </Select.Trigger>
+                    <Select.Content>
+                        {menusData?.map((item, i) => (
+                            <Select.Item key={i} value={item.toString()}>
+                                {item}
+                            </Select.Item>
+                        ))}
+                    </Select.Content>
+                </Select.Root>
+                <Input type="text" placeholder='Page Title' className='p-2 rounded-lg border-2 w-52' onChange={e => setPageName(e.target.value)} value={pageName} />
+                <Input type="text" placeholder='slug' className='p-2 rounded-lg border-2 w-52' onChange={e => setSlug(e.target.value)} value={slug} />
+                <Button.Root onClick={handePage}>Add</Button.Root>
             </div>}
             {mode === "Add Content" &&
-                <div>
-                    <select value={selectedPage} onChange={e => setSelectedPage(e.target.value)}>
-                        <option value="">Select Page</option>
-                        {pagesData.map((menu, index) => <option key={index} value={menu.toString()}>{menu}</option>)}
-                    </select>
-                    <input type="text" placeholder='Content Title' className='p-2 rounded-lg border-2' onChange={e => setContentName(e.target.value)} value={contentName} />
-                    <br />
-                    <textarea placeholder='slug' className='p-2 rounded-lg border-2' onChange={e => setText(e.target.value)} value={text}></textarea>
-                    <br />
-                    <button onClick={handleContent}>Add</button>
+                <div className='flex flex-col md:flex-row gap-4'>
+                    <Select.Root onValueChange={(value) => setSelectedPage(value)} >
+                        <Select.Trigger className='w-52'>
+                            <Select.Value placeholder='Select Page' />
+                        </Select.Trigger>
+                        <Select.Content>
+                            {pagesData?.map((item, i) => (
+                                <Select.Item key={i} value={item.toString()}>
+                                    {item}
+                                </Select.Item>
+                            ))}
+                        </Select.Content>
+                    </Select.Root>
+                    <Input type="text" placeholder='Content Title' className='p-2 rounded-lg border-2 w-52 h-10' onChange={e => setContentName(e.target.value)} value={contentName} />
+                    <Textarea.Root placeholder='Enter Text' className='p-2  w-52' onChange={e => setText(e.target.value)} value={text} >
+                        <Textarea.CharCounter current={text.length} max={1000} />
+                    </Textarea.Root>
+                    <Button.Root onClick={handleContent}>Add</Button.Root>
                 </div>
             }
         </div>

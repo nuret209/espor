@@ -1,10 +1,21 @@
 "use server"
 import { prisma } from "./prisma";
 
+export async function getNumbers() {
+    const numberOfMenus = await prisma.menu.count()
+    const numberOfPages = await prisma.page.count()
+    const numberOfContents = await prisma.content.count()
+    return {numberOfMenus, numberOfPages, numberOfContents}
+}
+
 export async function getMenus() {
     const menus = (await prisma.menu.findMany({
         include: {
-            pages: true,
+            pages: {
+                include: {
+                    Content: true,
+                },
+            },
         },
     })).map(menu => ({
         id: menu.id,
@@ -12,6 +23,12 @@ export async function getMenus() {
         pages: menu.pages.map(page => ({
             title: page.title,
             slug: page.slug,
+            Content: page.Content.map(content => ({
+                id: content.id,
+                title: content.title,
+                content: content.content,
+            }),
+            ),
         })),
     }));
     const [menu] = menus.splice(menus.findIndex(menu => menu.title == "main-items"), 1)

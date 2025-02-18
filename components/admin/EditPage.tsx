@@ -1,7 +1,13 @@
 "use client"
 import { editContent, editContentText, editMenu, editPage } from '@/lib/edit';
+
 import { getContents, getContentsWithMenu, getMenus, getPagesWithMenu } from '@/lib/get';
 import React, { useEffect, useState } from 'react'
+
+import * as Select from '@/components/ui/select';
+import * as Button from '@/components/ui/button';
+import { Input } from "antd"
+
 
 const EditPage = () => {
     const [selectedMenu, setSelectedMenu] = useState("");
@@ -37,32 +43,86 @@ const EditPage = () => {
         setEditedMenu(selectedMenu)
         setEditedPage(selectedPage)
         setEditedContent(selectedContent)
+        setEditedContentText("loading content...")
         getContents(selectedMenu, selectedPage, selectedContent)
             .then(content => setEditedContentText(content?.content ?? ''))
 
     }, [selectedMenu, selectedContent, selectedPage])
+
     return (
         <div>
-            <h2 className='text-[32px]'>Delete Page</h2>
-            <select name="" onChange={e => setSelectedMenu(e.target.value.trim())} id="" className='border-2'>
-                <option value="">Menu</option>
-                {menus?.map((c, index) =>
-                    <option key={index}>{c.title}</option>
-                )}
-            </select>
-            <select name="" id="" className='border-2' onChange={e => setSelectedPage(e.target.value.trim())}>
-                <option value="">Page</option>
-                {pages?.map((e, index) => <option key={index}>{e.title}</option>)};
-            </select>
-            <select name="" id="" className='border-2' onChange={e => setSelectedContent(e.target.value.trim())}>
-                <option value="">Content</option>
-                {contents?.map((c, index) => <option key={index}>{c.title}</option>)};
-            </select>
-            <div className='flex flex-col w-52'>
-                {selectedMenu && <> <input type="text" value={editedMenu} onChange={e => setEditedMenu(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => (editMenu(selectedMenu, editedMenu || "").then(c => c == true && alert("ok refresh page")))}>Menü Kaydet</button></>}
-                {selectedPage && <> <input type="text" value={editedPage} onChange={e => setEditedPage(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editPage(selectedMenu, selectedPage, editedPage || "").then(c => c == true && alert("ok refresh page"))}> Sayfa Kaydet</button></>}
-                {selectedContent && <> <input type="text" value={editedContent} onChange={e => setEditedContent(e.target.value)} className='border-2 p-2 rounded-10' /> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContent(selectedMenu, selectedPage, selectedContent, editedContent || "").then(c => c == true && alert("ok refresh page"))}>Content Kaydet</button></>}
-                {selectedContent && <> <textarea value={editedContentText} onChange={e => setEditedContentText(e.target.value)} id=""></textarea> <button className='bg-red-600 p-3 rounded-lg text-white mt-1 mb-3' onClick={() => editContentText(selectedMenu, selectedPage, selectedContent, editedContentText || "").then(c => c == true && alert("ok refresh page"))}>Content Text Kaydet</button></>}
+            <h2 className='text-[32px]'>Edit Page</h2>
+            <div className='flex gap-4'>
+                <Select.Root onValueChange={(value) => setSelectedMenu(value.trim())}>
+                    <Select.Trigger className='w-52'>
+                        <Select.Value placeholder='Select Menu' />
+                    </Select.Trigger>
+                    <Select.Content>
+                        {menus?.map((item, i) => (
+                            <Select.Item key={i} value={item.title}>
+                                {item.title}
+                            </Select.Item>
+                        ))}
+                    </Select.Content>
+                </Select.Root>
+                <Select.Root onValueChange={(value) => setSelectedPage(value.trim())}>
+                    <Select.Trigger className='w-52'>
+                        <Select.Value placeholder='Select Page' />
+                    </Select.Trigger>
+                    <Select.Content>
+                        {pages?.map((item, i) => (
+                            <Select.Item key={i} value={item.title}>
+                                {item.title}
+                            </Select.Item>
+                        ))}
+                    </Select.Content>
+                </Select.Root>
+                <Select.Root onValueChange={(value) => setSelectedContent(value.trim())}>
+                    <Select.Trigger className='w-52'>
+                        <Select.Value placeholder='Select Content' />
+                    </Select.Trigger>
+                    <Select.Content>
+                        {contents?.map((item, i) => (
+                            <Select.Item key={i} value={item.title}>
+                                {item.title}
+                            </Select.Item>
+                        ))}
+                    </Select.Content>
+                </Select.Root>
+            </div>
+            <div className='flex gap-5 mt-5'>
+                {selectedMenu && <div className='flex flex-col gap-5 w-52'>
+                    <Input placeholder='Enter Menu Name' className='p-2 rounded-lg border-2 w-52' value={editedMenu} onChange={e => setEditedMenu(e.target.value)}
+                    />
+                    <Button.Root onClick={() => editMenu(selectedMenu, editedMenu || "").then(c => c == true && alert("ok refresh page"))}>
+                        Save Menu
+                    </Button.Root>
+                </div>
+                }
+                {selectedPage && <div className='flex flex-col gap-5 w-52'>
+                    <Input placeholder='Enter Page Name' className='p-2 rounded-lg border-2 w-52' value={editedPage} onChange={e => setEditedPage(e.target.value)}
+                    />
+                    <Button.Root onClick={() => editPage(selectedMenu, selectedPage, editedPage || "").then(c => c == true && alert("ok refresh page"))}>
+                        Save Page
+                    </Button.Root>
+                </div>
+                }
+                {selectedContent && <div className='flex flex-col gap-5 w-52'>
+                    <Input placeholder='Enter Content Name'  className='p-2 rounded-lg border-2 w-52'value={editedContent} onChange={e => setEditedContent(e.target.value)}
+                    />
+                    <Button.Root onClick={() => editContent(selectedMenu, selectedPage, selectedPage, editedContent || "").then(c => c == true && alert("ok refresh page"))}>
+                        Save Content
+                    </Button.Root>
+                </div>
+                }
+                {selectedContent && <div className='flex flex-col gap-5 w-52'>
+                    <Input placeholder='Enter Content Text' className='p-2 rounded-lg border-2 w-52' value={editedContentText} onChange={e => setEditedContentText(e.target.value)}
+                    />
+                    <Button.Root onClick={() => editContentText(selectedMenu, selectedPage, selectedContent, editedContentText || "").then(c => c == true && alert("ok refresh page"))}>
+                        Save Content Text
+                    </Button.Root>
+                </div>
+                }
             </div>
         </div>
     )
