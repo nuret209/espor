@@ -11,12 +11,18 @@ export const deleteMenu = async (menu: string) => {
     }
     try {
         _menu.pages.forEach(page => deletePage(menu, page.slug))
+        await prisma.menu.delete({
+            where: {
+                id: _menu.id
+            }
+        })
         return true;
     }
     catch (Err) {
         console.error("Error deleting menu:", Err);
         return false;
     }
+
 }
 export const deletePage = async (menu: string, page: string) => {
     const _page = (await getMenus()).find(m => m.title.trim() == menu.trim())?.pages.find(p => p.title.trim() === page.trim());
